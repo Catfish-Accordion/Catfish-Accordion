@@ -1,26 +1,36 @@
 import '../Styles/Profile.css';
 // bring in React from React
-import React from 'react'
-import {profileData} from "../Data/profileData"
-
+import React from 'react';
 
 
 // define our functional component
-function Profile(props) {
-    let pd = profileData
+function Profile({
+	firstName,
+	lastName,
+	name,
+	age,
+	birthday,
+	version,
+	username,
+	userId,
+	anonymousId,
+	createdAt,
+	updatedAt,
+}) {
+	
+	let thisYear = 2021;
+	let birthYear = thisYear - age;
 
-    let thisYear = 2021
-    let birthYear = thisYear- pd.age
-
-    return (
-        <div className="profile ">
-            <h1>{pd.name}</h1>
-            <p>Today : {pd.date}</p>
-            <p>Updated At : {pd.updatedAt}</p>
-            <h2>{pd.username}</h2>
-            <p>{pd.age} : {birthYear}</p>
-        </div>
-    )
+	return (
+		<div className="profile ">
+			<h1>{name}</h1>
+			<p>Updated At : {updatedAt}</p>
+			<h2>{username}</h2>
+			<p>
+				{age} : {birthday}
+			</p>
+		</div>
+	);
 }
 
 export default Profile;
