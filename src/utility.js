@@ -1,7 +1,6 @@
 //utility functions for various checks
 
 export const checkValidity = (value, rules) => {
-    console.log('checking validity')
     let isValid = true
     if (!rules) {
         return true
@@ -23,10 +22,5 @@ export const checkValidity = (value, rules) => {
     }
     return isValid
   }
-  
-  
-  export const checkMatch = (value, valueToCompare) => {
-    if (value===valueToCompare) return true
-    else return false
-  }
+
   

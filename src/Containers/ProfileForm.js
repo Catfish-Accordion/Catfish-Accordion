@@ -1,11 +1,21 @@
 import React, { useState } from 'react';
 import { checkValidity, checkMatch } from '../utility';
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 
 const ProfileForm = () => {
-	const history = useHistory();
-	const [name, setName] = useState({
-		placeholder: 'your name',
+	const history = useNavigate();
+	const [firstName, setFirstName] = useState({
+		placeholder: 'your first name',
+		value: '',
+		validation: {
+			required: true,
+			alphabeticOnly: true,
+		},
+		valid: false,
+		touched: false,
+	});
+	const [lastName, setLastName] = useState({
+		placeholder: 'your last name',
 		value: '',
 		validation: {
 			required: true,
@@ -24,40 +34,37 @@ const ProfileForm = () => {
 		valid: false,
 		touched: false,
 	});
-	const [password, setPassword] = useState({
+
+	const [birthday, setBirthday] = useState({
+		placeholder: 'your birthday',
 		value: '',
-		placeholder: 'password',
 		validation: {
 			required: true,
-			minLength: 6,
+			isDate: true,
 		},
-		valid: true,
+		valid: false,
 		touched: false,
 	});
 
-	const [repeatPassword, setRepeatPassword] = useState({
-		value: '',
-		placeholder: 'repeat password',
-		validation: {
-			required: true,
-		},
-		valid: true,
-		touched: false,
-	});
 	const [formInvalid, setFormInvalid] = useState(false);
 	const [errorMessages, setErrorMessages] = useState({
-		nameError: '',
+		firstNameError: '',
+		lastNameError: '',
 		emailError: '',
-		passwordError: '',
-		repeatPasswordError: '',
+		birthdayError: '',
 	});
 
 	const inputChangedHandler = (event) => {
 		const property = event.target.name;
 		const value = event.target.value;
 		switch (property) {
-			case 'name':
-				setName((prev) => {
+			case 'first name':
+				setFirstName((prev) => {
+					return { ...prev, value, touched: true };
+				});
+				break;
+			case 'last name':
+				setLastName((prev) => {
 					return { ...prev, value, touched: true };
 				});
 				break;
@@ -66,13 +73,8 @@ const ProfileForm = () => {
 					return { ...prev, value, touched: true };
 				});
 				break;
-			case 'password':
-				setPassword((prev) => {
-					return { ...prev, value, touched: true };
-				});
-				break;
-			case 'repeatPassword':
-				setRepeatPassword((prev) => {
+			case 'birthday':
+				setBirthday((prev) => {
 					return { ...prev, value, touched: true };
 				});
 				break;
@@ -84,10 +86,16 @@ const ProfileForm = () => {
 
 	const checkValidFields = () => {
 		let errors = 0;
-		if (!checkValidity(name.value, name.validation)) {
+		if (!checkValidity(firstName.value, firstName.validation)) {
 			errors++;
 			setErrorMessages((prev) => {
-				return { ...prev, nameError: 'Enter your name' };
+				return { ...prev, firstNameError: 'Enter your first name' };
+			});
+		}
+		if (!checkValidity(lastName.value, lastName.validation)) {
+			errors++;
+			setErrorMessages((prev) => {
+				return { ...prev, lastNameError: 'Enter your last name' };
 			});
 		}
 		if (!checkValidity(email.value, email.validation)) {
@@ -96,19 +104,10 @@ const ProfileForm = () => {
 				return { ...prev, emailError: 'Enter a valid email address' };
 			});
 		}
-		if (!checkValidity(password.value, password.validation)) {
+		if (!checkValidity(birthday.value, birthday.validation)) {
 			errors++;
 			setErrorMessages((prev) => {
-				return {
-					...prev,
-					passwordError: 'Passwords must be at least 6 characters',
-				};
-			});
-		}
-		if (!checkMatch(repeatPassword.value, password.value)) {
-			errors++;
-			setErrorMessages((prev) => {
-				return { ...prev, repeatPasswordError: 'Passwords must match' };
+				return { ...prev, birthdayError: 'Enter a valid birth date' };
 			});
 		}
 		if (errors) return false;
@@ -117,19 +116,64 @@ const ProfileForm = () => {
 	const submitHandler = (e) => {
 		e.preventDefault();
 		if (checkValidFields()) {
-			history.push({
-				pathname: '/success',
-				state: {
-					name: name.value,
-					email: email.value,
-					password: password.value,
-				},
-			});
+			console.log(
+				'success, firstName =',
+				firstName.value,
+				'lastName',
+				lastName.value,
+				'email',
+				email.value,
+				'birthday',
+				birthday.value
+			);
+			clearForm()
 		} else {
 			setFormInvalid(true);
 		}
 	};
 
+	const clearForm = () => {
+		setFirstName({
+			placeholder: 'your first name',
+			value: '',
+			validation: {
+				required: true,
+				alphabeticOnly: true,
+			},
+			valid: false,
+			touched: false,
+		});
+		setLastName({
+			placeholder: 'your last name',
+			value: '',
+			validation: {
+				required: true,
+				alphabeticOnly: true,
+			},
+			valid: false,
+			touched: false,
+		});
+		setBirthday({
+			placeholder: 'your birthday',
+			value: '',
+			validation: {
+				required: true,
+				isDate: true,
+			},
+			valid: false,
+			touched: false,
+		});
+		setEmail({
+			placeholder: 'your email',
+			value: '',
+			validation: {
+				required: true,
+				isEmail: true,
+			},
+			valid: false,
+			touched: false,
+		});
+	};
 	let displayError = null;
 
 	if (formInvalid) {
@@ -157,43 +201,42 @@ const ProfileForm = () => {
 
 			<form onSubmit={submitHandler}>
 				<h3>Create account</h3>
-				<label htmlFor='name'>Your name</label>
+				<label htmlFor="fname">Your first name</label>
 
 				<input
-					type='text'
-					name='name'
-					value={name.value}
+					type="text"
+					name="first name"
+					value={firstName.value}
 					onChange={(e) => inputChangedHandler(e)}
 				/>
 
-				<label htmlFor='email'>Email</label>
+				<label htmlFor="fname">Your last name</label>
+				<input
+					type="text"
+					name="last name"
+					value={lastName.value}
+					onChange={(e) => inputChangedHandler(e)}
+				/>
+
+				<label htmlFor="email">Email</label>
 
 				<input
-					type='email'
-					name='email'
+					type="email"
+					name="email"
 					value={email.value}
 					onChange={(e) => inputChangedHandler(e)}
 				/>
 
-				<label htmlFor='password'>Password</label>
+				<label htmlFor="birthday">Birthday</label>
 
 				<input
-					type='password'
-					name='password'
-					value={password.value}
+					type="date"
+					name="birthday"
+					value={birthday.value}
 					onChange={(e) => inputChangedHandler(e)}
 				/>
 
-				<label htmlFor='repeatPassword'>Re-enter password</label>
-
-				<input
-					type='password'
-					name='repeatPassword'
-					value={repeatPassword.value}
-					onChange={(e) => inputChangedHandler(e)}
-				/>
-
-				<button type='submit'>Submit</button>
+				<button type="submit">Submit</button>
 			</form>
 		</div>
 	);
