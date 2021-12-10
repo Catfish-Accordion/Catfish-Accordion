@@ -1,4 +1,4 @@
-import '../Styles/Profile.css';
+// EXTERNAL IMPORTS
 // bring in React from React
 import React from 'react';
 

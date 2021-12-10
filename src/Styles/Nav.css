@@ -1,0 +1,64 @@
+/* FONT IMPORTED */
+/* Fira Sans */
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans");
+/** HEADER */
+/** NAVIGATION BAR */
+.nav-bar {
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #264b2f;
+}
+
+.nav-bar ul {
+  text-align: center;
+  list-style-type: none;
+  margin: 0 auto;
+  padding: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  -ms-flex-line-pack: distribute;
+      align-content: space-around;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.nav-bar ul li .nav-li {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-family: "Fira Sans", sans-serif;
+  font-size: 17px;
+  text-decoration: none !important;
+}
+
+.nav-bar ul li .nav-li a .nav-link {
+  color: #f0efef;
+  text-decoration: none !important;
+  padding: 14px;
+}
+
+.nav-bar ul li .nav-li a .nav-link:hover {
+  background-color: #111;
+}
+
+.nav-bar ul li .nav-li a .nav-link:visited {
+  color: #f0efef !important;
+}
+
+.nav-bar ul li .nav-li a .nav-link:active {
+  color: #7c6f6f;
+}
+/*# sourceMappingURL=Nav.css.map */

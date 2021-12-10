@@ -1,0 +1,52 @@
+/* FONT IMPORTED */
+
+/* Fira Sans */
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans");
+@import "variables";
+
+
+/** HEADER */
+
+/** NAVIGATION BAR */
+.nav-bar {
+  overflow: hidden;
+//   background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  //   max-height: 5vh;
+  background-color: $main-color;
+  ul {
+      text-align: center;
+      list-style-type: none;
+      margin: 0 auto;
+      padding: 15px;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-evenly;
+      align-content: space-around;
+      align-items: flex-start;
+    li .nav-li {
+      display: inline-flex;
+      font-family: "Fira Sans", sans-serif;
+      font-size: 17px;
+      text-decoration: none !important;
+      a .nav-link {
+          color: $main-white-color;
+          text-decoration: none !important;
+        padding: 14px;
+        &:hover {
+          background-color: #111;
+        }
+        &:visited {
+            color: $main-white-color !important;            
+        }
+        &:active {
+            color: $secondary-text-color;
+        }
+      }
+    }
+  }
+}
+
