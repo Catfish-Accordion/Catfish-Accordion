@@ -1,0 +1,12 @@
+ul.NavigationList {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+@media (min-width: 769px) {
+	ul.NavigationList {
+		justify-content: flex-end;
+	}
+}
