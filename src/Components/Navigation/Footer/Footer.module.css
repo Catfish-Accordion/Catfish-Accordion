@@ -1,0 +1,28 @@
+.Footer {
+	height: 15vh;
+	min-height: 12rem;
+	color: var(--color-white);
+	background-color: var(--color-black);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+}
+
+.Footer span {
+	display: block;
+	padding-top: 2rem;
+	text-align: center;
+}
+
+@media (min-width: 769px) {
+	.Footer {
+		flex-direction: row;
+		justify-content: space-around;
+	}
+
+	.Footer span {
+
+		margin: 5rem 0;
+	}
+}

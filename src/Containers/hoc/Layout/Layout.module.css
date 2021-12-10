@@ -1,0 +1,14 @@
+.Content {
+	max-width: 100vw;
+	min-height: 67vh;
+
+}
+
+.Layout {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	background-color: var(--color-background);
+	background-size: cover;
+}
+
